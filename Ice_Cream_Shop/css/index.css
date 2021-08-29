@@ -1,0 +1,238 @@
+@media all and (min-width: 1025px )
+{
+    .icons{
+        bottom: 47%;
+        right: -125px;
+    }
+    #forgot{
+        position: relative;
+        right: -65px;
+    }
+    .input ,#btn-login{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 1024px)
+{
+    .icons{
+        top: -75px;
+        right: 45%;
+    }
+    
+    .pc, .icons-title{
+        display: none;
+    }
+    .input ,#btn-login{
+        width: 70%;
+    }
+}
+body::-webkit-scrollbar 
+{
+    width: 0.5rem;
+} 
+body::-webkit-scrollbar-track 
+{
+    background: #1e1e24;
+}  
+body::-webkit-scrollbar-thumb
+{
+    background: rgb(10, 105, 81);
+}
+body{
+    background-color: pink;
+}
+
+#home{
+    margin-top: 80px;
+    background-image: url("../img/back.jpg");
+}
+#shop, #login{
+    margin-top: 100px;
+}
+.surface{  
+    background-color: #ebeef5;  
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 37em;
+    width: auto;
+    margin-top: 1em;
+    box-shadow: 2px 3px 20px 0px rgb(54, 54, 54);
+}
+.myitem{
+    padding-right: 25px;
+    text-shadow:2px 3px 20px 0px rgb(54, 54, 54);
+}
+.logo{
+    margin-left: 1em;
+    font-size: 30px;
+    color: #de3b6a;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    transition: all 0.2s ease;
+}
+.logo:hover{
+    color: white !important;
+    text-decoration: none;
+    text-shadow: 2px 2px 20px black;
+}
+.starter{
+    padding-top: 9em;
+}
+.descreption , .header-title, .buttons{
+    text-align: center;
+}
+.header{
+    padding-top: 5em;
+}
+.col-xm-12{
+    padding-top: 1em; 
+}
+.descreption{
+    font-size: 0.9em;
+}
+.header-title{
+    color: #de3b6a;
+}
+
+#shop-container{
+    overflow: auto;
+    height: 500px;
+    background-color:  rgba(201, 201, 201, 0.1);
+}
+.card{
+    margin: 2px;
+    background-color: rgba(255, 255, 255, 0.507);
+}
+#shop-container::-webkit-scrollbar 
+{
+    width: 0.7rem;
+    
+} 
+#shop-container::-webkit-scrollbar-track 
+{
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+}  
+#shop-container::-webkit-scrollbar-thumb
+{
+    box-shadow:  0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background: #de3b6a;
+
+}
+.icons{
+    border: 4px solid white ;
+    border-radius: 25%;
+    display: inline-block;
+    position: absolute;
+    padding: 10px ;
+    transition: all 0.35s ease;
+}
+.icons:hover{
+    cursor: pointer;
+    background: rgb(58, 58, 58);
+}
+
+.icons > img{
+    height: 30px;
+    width: 30px;
+}
+.icons-title{
+    position: absolute;
+    bottom: -25px;
+    margin: auto;
+    font-size: 15px;
+    width: 60px;
+    color: white;
+    text-shadow: gray 3px 3px 10px;
+    transition: all 0.3s ease;
+}
+.icons-title:hover{
+    text-shadow: gray 3px 3px 3px;
+}
+#items-container{
+    border: dashed 4px rgba(126, 126, 126, 0.7);
+    background-color: rgb(241, 241, 241);
+    border-radius: 15px;
+    height: 285px;
+    margin: 5px;
+    padding: 20px;
+    overflow-x: none;
+    overflow-y: auto;
+    justify-content: space-around;
+}
+td,th{
+    padding:40px;
+}
+th{
+    padding-top:0px ;
+    padding-bottom: 5px;
+}
+thead{
+    border-bottom: lightgray 4px solid;
+}
+.items-title{
+    width: 45%;
+    border-bottom: lightgray 1px solid;
+    align-items: center;
+
+}
+.items-price{
+    width: 15%; 
+    border-bottom: lightgray 1px solid;
+    align-items: center;
+}
+.items-quantity{
+    width: 30%;
+    border-bottom: lightgray 1px solid;
+    align-items: center;
+}
+.items-total{
+    width: 10%;
+    border-bottom: lightgray 1px solid;
+    align-items: center;
+}
+
+#wave{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+}
+#access{
+    height: 85%;
+    width: 85%;  
+    position: relative;
+    top: 35px;
+    left:60px
+}
+.input{
+    background-color: #ebeef5;
+    border:none;
+    border-bottom: 3px solid #3F3D56;
+    margin: auto;
+}
+#btn-login{
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #DE3B6A;
+    color: white;
+    border-radius: 40px;
+    transition: all 0.35s ease;
+}
+#btn-login:hover{
+    background-color: rgb(223, 51, 99);
+    transform: scale(1.1);
+}
+#forgot{
+    color: gray;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+}
+#forgot:hover{
+    text-decoration: none;
+    color: #de3b6a;
+}
