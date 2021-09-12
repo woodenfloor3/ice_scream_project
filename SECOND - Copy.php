@@ -1,7 +1,10 @@
+<?php 
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
-<head>
+<head> 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,6 +43,9 @@
                     <li class="nav-item myitem">
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
+                    <li class="nav-item myitem">
+                        <a class="nav-link" href="loginpage-Copy.php">logout</a>
+                    </li>
                   </ul>
             </div>
         </nav>
@@ -73,7 +79,19 @@
                     <form action="index.html" class="text-center">
                         <img src="img/avatar.svg"style="width: 20%;height: 20%;" alt="" >
                         <br><br>
-                        <h2 style="font-weight: 625;padding-bottom: 15px;">WELCOME, Arif</h2>   
+                        <h2 style="font-weight: 625;padding-bottom: 15px;"> Welcome!!!
+                        <?php
+
+
+
+
+if ($_SESSION['ok']> 0 )
+{
+    echo $_SESSION['us_id'];
+}
+
+?>
+</h2>   
 
                     </form>
                 </div>
@@ -163,13 +181,15 @@
     
             <!-- Modal Header -->
             <div class="modal-header">
+            
             <h3 class="modal-title">MY CART</h3>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">&times; </button>
             </div>
     
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="items-container">
+                <form class="text-center" method="POST" action="order.php" >
                     <table>
                         <thead>
                             <tr>
@@ -197,7 +217,7 @@
                             <tr>
                                 <th colspan="2"></th>
                                 <th class="items-quantity">Total</th>
-                                <th class="items-total">0dh</th>
+                                <th class="items-total">0RS</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -206,85 +226,17 @@
     
             <!-- Modal footer -->
             <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-dismiss="modal">To order</button>
+            
+            <button type class="btn btn-warning">order </button>
+
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-        </div>
-    </div>
-
-    
-    <div class="modal fade" id="sign-up">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-        
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">SIGN UP</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <h2>Create your account!</h2>
-                <p>It's quick and easy:</p>
-                <form action="/action_page.php" class="was-validated">
-                    <div class="row">
-                        <div class="col">
-                            <label for="firstname">First name:</label>
-                            <input type="text" class="form-control" id="firstname" placeholder="Enter name" name="firstname" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="col">
-                            <label for="lastname">Last name:</label>
-                            <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="adress">Address:</label>
-                            <input type="text" class="form-control" id="adress" placeholder="Enter adress" name="adress" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                       
+</form>
    
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col">
-                            <label for="email">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="abc@example.com" name="email" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="col">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                    </div>
+        </div>
 
-                    <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="remember" required> I agree on Terms & Conditions.
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Check this checkbox to continue.</div>
-                    </label>
-                    </div>
-                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
-                </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+        </div>
+        </div>
+        </div>
         
         </div>
         </div>
@@ -294,6 +246,7 @@
             <p>For inquiries regarding product availability, ordering information, status of shipment, billing,
             spoiled merchandise, or returns, please contact Penguin Random House Customer Service at 1-800-733-3000.</p>
     </div>
+
     <!-- Info -->
     <div class="modal fade" id="info">
             <div class="modal-dialog">

@@ -32,11 +32,12 @@
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto">
                     
-                    <li class="nav-item myitem">
-                        <a class="nav-link" href="#login">Login</a>
-                    </li>
+                
                     <li class="nav-item myitem">
                         <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item myitem">
+                        <a class="nav-link" href="#AdminLogin" data-toggle="modal" data-target="#AdminLogin">Admin<span class="badge badge-success">0</span></a>
                     </li>
                   </ul>
             </div>
@@ -108,7 +109,7 @@
                     if($count>0)
                     {
                         echo ("<SCRIPT LANGUAGE='JavaScript'>
-                    window.location.href='../SECOND.html'
+                    window.location.href='SECOND - Copy.php'
                     </SCRIPT>");
                     }
                     else
@@ -174,10 +175,7 @@
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
-                           
-       
-                        </div>
-                        
+                           </div>
                         <div class="row">
                             <div class="col">
                                 <label for="email">Email:</label>
@@ -192,7 +190,6 @@
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                         </div>
-    
                         <div class="form-group form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" name="remember" required> I agree on Terms & Conditions.
@@ -202,17 +199,13 @@
                         </div>
                         <button type="submit" name="submit" value="submit" class="btn btn-block btn-primary">Submit</button>
                     </form>
-                    <?php
-
-                if(isset($_POST['submit']))
-
+<?php
+if(isset($_POST['submit']))
 {
-$dbhost= "localhost";
-$username = "root";
-$password = "";
-$dbname = "ice-cream";
-
-
+ $dbhost= "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "ice-cream";
 // Create connection
 $conn =  mysqli_connect($dbhost, $username, $password, $dbname) or 
 die("Could not connect " . mysqli_error($conn));
@@ -238,11 +231,7 @@ die("Could not connect " . mysqli_error($conn));
             }
             ?>
                 </div>
-                
-    
-            
-            
-            </div>
+                </div>
     <!-- Info -->
     <div class="modal fade" id="info">
             <div class="modal-dialog">
@@ -269,7 +258,45 @@ die("Could not connect " . mysqli_error($conn));
             </div>
             </div>
     </div>
+    <div class="modal fade" id="AdminLogin">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
     
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h3 class="modal-title">admin</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="items-container">
+                <form class="text-center" method="POST" action="php/AdminLoginValidation.php">
+                        <img src="img/avatar.svg"style="width: 20%;height: 20%;" alt="" >
+                        <h2 style="font-weight: 625;padding-bottom: 15px;">Welcome Admin</h2>
+                        <div class="form-group">
+                            <label for="text">Username</label>
+                            <input type="text" class="form-control input" name="usr" >
+                          </div>
+                          <div class="form-group">
+                            <label for="text">Password</label>
+                            <input type="password" class="form-control input" name="pass" >
+                            <a href="#" id="forgot">Forgot password?</a>
+                          </div>
+                          <button type="submit" class="btn" name="submitlogin" id="btn-login">Login </button>
+                          
+                                    
+
+                    </form>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
