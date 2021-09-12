@@ -1,0 +1,162 @@
+Simple PHP Shopping Cart
+by Vincy. Last modified on September 1st, 2020.
+Building a PHP shopping cart eCommerce software is simple and easy. In this tutorial, let’s create a simple PHP shopping cart software with MySQL.
+
+The intention of this shopping cart software is that it should be simple and as minimal as possible. You can download this free and customize it for your needs within minutes.
+
+shopping
+
+view demo
+
+
+
+PHP Shopping Cart Software Development Overview
+PHP shopping cart example has the following functionality: 
+
+Retrieve product information from the database.
+Create product gallery for the shopping cart.
+Manage cart items using the PHP session.
+Handle add, edit, remove and empty cart actions.
+I have retrieved information like name, code, price, and photos from the database. The resultant information is in an array format.
+
+I have iterated this resultant array to form the product gallery. Every product in the gallery will have an add-to-cart option.
+
+I have used the PHP shopping cart session to store and manage the items in the cart.
+
+Once the session expires, the cart items get cleared. This code has an option to clear the entire cart or to remove any particular item from the cart.
+
+File Structure
+
+The shopping cart software example has the following file structure. The below list has the file names and their responsibility.
+
+You can build a gallery-based shopping cart software with these files in few minutes.
+
+dbcontroller.php – a generic database layer to help with DAO functions. It also manages the database connection.
+index.php – to display the product gallery for the shopping cart.
+style.css – to showcase products for the shopping cart. The styles are minimal and cross-browser compatible.
+tblproduct.sql – contains SQL script with the product table structure and the data.
+product-images – a folder that contains the product images. I have used these images to show the product gallery. 
+Create a Product Gallery for Shopping Cart
+If you are familiar with online shopping, you might have across product galleries. It is an important gateway in a shopping cart application.
+
+Users will use the product gallery to get a feel of the products available to buy. It is a critical component of every online store.
+
+You should always provide a catalog of the available products to let them have a glance. It helps to promote your products for the impulsive buyers.
+
+In the following code, I have shown the PHP script to get the product results from the database. The result will be an array and iterated to create product card in each iteration.
+
+The DBController.php class will handle the DAO operation and fetch products result.
+
+<?php
+$product_array = $db_handle->runQuery("SELECT * FROM tblproduct ORDER BY id ASC");
+if (!empty($product_array)) { 
+	foreach($product_array as $key=>$value){
+?>
+	<div class="product-item">
+		<form method="post" action="index.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
+		<div class="product-image"><img src="<?php echo $product_array[$key]["image"]; ?>"></div>
+		<div class="product-tile-footer">
+		<div class="product-title"><?php echo $product_array[$key]["name"]; ?></div>
+		<div class="product-price"><?php echo "$".$product_array[$key]["price"]; ?></div>
+		<div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Add to Cart" class="btnAddAction" /></div>
+		</div>
+		</form>
+	</div>
+<?php
+	}
+}
+?>
+Adding Products  to Shopping Cart
+After creating the product gallery page, we need to work on the PHP code to perform the cart actions. They are add-to-cart, remove a single item from the cart, clear the complete cart and similar.
+
+In the above code, I have added the HTML option to add the product to the shopping cart from the product gallery. When the user clicks the ‘Add to Cart’ button, the HTML form passes the product id to the backend PHP script.
+
+In PHP, I receive and process the cart action with a switch control statement. I have created PHP switch cases to handle the add-to-cart, remove-single, empty-cart actions.
+
+The action is the argument to the switch statement. Then it executes the corresponding action case as requested.
+
+The “add” case handles the add to cart action. In this case, I have received the product id and the quantity.
+
+The cart session stores the submitted product. I have updated the quantity of the product if it already exists in the session cart. The PHP session index is the reference to perform this action.
+
+case "add":
+	if(!empty($_POST["quantity"])) {
+		$productByCode = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code='" . $_GET["code"] . "'");
+		$itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["image"]));
+		
+		if(!empty($_SESSION["cart_item"])) {
+			if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
+				foreach($_SESSION["cart_item"] as $k => $v) {
+						if($productByCode[0]["code"] == $k) {
+							if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+								$_SESSION["cart_item"][$k]["quantity"] = 0;
+							}
+							$_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+						}
+				}
+			} else {
+				$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+			}
+		} else {
+			$_SESSION["cart_item"] = $itemArray;
+		}
+	}
+	break;
+List Cart Items from the PHP Session
+This code shows the HTML to display the shopping cart with action controls. The loop iterates the cart session to list the cart items in a tabular format.
+
+Each row shows the product image, title, price, item quantity with a remove option. Also, it shows the total item quantity and the total item price by summing up the individual cart items.
+
+<div id="shopping-cart">
+<div class="txt-heading">Shopping Cart</div>
+
+<a id="btnEmpty" href="index.php?action=empty">Empty Cart</a>
+<?php
+if(isset($_SESSION["cart_item"])){
+    $total_quantity = 0;
+    $total_price = 0;
+?>	
+<table class="tbl-cart" cellpadding="10" cellspacing="1">
+<tbody>
+<tr>
+<th style="text-align:left;">Name</th>
+<th style="text-align:left;">Code</th>
+<th style="text-align:right;" width="5%">Quantity</th>
+<th style="text-align:right;" width="10%">Unit Price</th>
+<th style="text-align:right;" width="10%">Price</th>
+<th style="text-align:center;" width="5%">Remove</th>
+</tr>	
+<?php		
+    foreach ($_SESSION["cart_item"] as $item){
+        $item_price = $item["quantity"]*$item["price"];
+		?>
+				<tr>
+				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["name"]; ?></td>
+				<td><?php echo $item["code"]; ?></td>
+				<td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+				<td style="text-align:center;"><a href="index.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
+				</tr>
+				<?php
+				$total_quantity += $item["quantity"];
+				$total_price += ($item["price"]*$item["quantity"]);
+		}
+		?>
+
+<tr>
+<td colspan="2" align="right">Total:</td>
+<td align="right"><?php echo $total_quantity; ?></td>
+<td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>		
+  <?php
+} else {
+?>
+<div class="no-records">Your Cart is Empty</div>
+<?php 
+}
+?>
+</div>

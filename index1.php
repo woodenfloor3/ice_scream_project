@@ -7,7 +7,7 @@ echo "<tr><th>Id</th><th>flavour</th><th>description</th><th>stock</th><th>price
 
 class TableRows extends RecursiveIteratorIterator {
   function construct($it) {
-    parent::construct($it, self::LEAVES_ONLY);
+    parent::construct($it, self::LEAVES_ONLY);*
   }
 
   function current() {
@@ -31,7 +31,7 @@ $dbname = "ice-cream";
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $stmt = $conn->prepare("SELECT id, flavour, description, stock, price  FROM products");
+  $stmt = $conn->prepare("SELECT id, flavour, description, stock, price  FROM products ORDER BY id ASC");
   $stmt->execute();
 
   // set the resulting array to associative

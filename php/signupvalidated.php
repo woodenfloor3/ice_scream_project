@@ -12,7 +12,7 @@ if(isset($_POST['submit']))
 	$password=$_POST['password'];
 	$address=$_POST['address'];
 	
-	$sql= "insert into sign-up values ('$id','$fname','$lname','$email'$password','$address')";
+	$sql= "insert into sign-up values ('$id','$fname','$lname','$email',$password','$address')";
             
 	$result = mysqli_query($con, $sql);
             if($result)

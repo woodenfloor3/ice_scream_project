@@ -81,16 +81,16 @@ session_start();
                         <br><br>
                         <h2 style="font-weight: 625;padding-bottom: 15px;"> Welcome!!!
                         <?php
+                        if ($_SESSION['ok']> 0 )
+                            {
+                                echo $_SESSION['usid'];
+                                
+                            }
+                        else{
+                            echo "no one is logged in";
+                        }
 
-
-
-
-if ($_SESSION['ok']> 0 )
-{
-    echo $_SESSION['us_id'];
-}
-
-?>
+                        ?>
 </h2>   
 
                     </form>
@@ -118,7 +118,7 @@ if ($_SESSION['ok']> 0 )
                     <img class="card-img-top float-right rounded" src="img/chocolate.jpeg" style="height: 150px; width: 210px;" alt="">
                   <h4 class="card-title"> Chocolate</h4>
                   <p class="card-text">chocolate ice cream is generally made by blending cocoa powder along with the eggs, cream, vanilla and sugar used to make vanilla ice cream </p>
-                  <span class="badge badge-pill badge-success p-2">15 &#8377</span>
+                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
                   <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
                 </div>
             </div>
@@ -126,17 +126,17 @@ if ($_SESSION['ok']> 0 )
                 <div class="card-body">
                     <img class="card-img-top float-right rounded" src="img/BlackCurrant.jpeg" style="height: 150px; width: 210px;" alt="">
                   <h4 class="card-title">Black Currant</h4>
-                  <p class="card-text">Some example text. Some example text. </p>
-                  <span class="badge badge-pill badge-success p-2">8 &#8377</span>
+                  <p class="card-text">This blackcurrant ice cream is a flavourful, creamy custard-based ice cream with the rich and tangy taste of tart blackcurrants.</p>
+                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
                   <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
                 </div>
             </div>
             <div class="card" style="width: 500px;">
                 <div class="card-body">
                     <img class="card-img-top float-right rounded" src="img/vanilla.jpg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Ice Cream with pain</h4>
-                  <p class="card-text">pain. </p>
-                  <span class="badge badge-pill badge-success p-2">12 &#8377</span>
+                  <h4 class="card-title">Vanilla</h4>
+                  <p class="card-text">Vanilla ice cream is made by blending in vanilla essence in along with the eggs, cream, milk and sugar. </p>
+                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
                   <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
                 </div>
             </div>
@@ -144,17 +144,17 @@ if ($_SESSION['ok']> 0 )
                 <div class="card-body">
                     <img class="card-img-top float-right rounded" src="img/Mango.jpeg" style="height: 150px; width: 210px;" alt="">
                   <h4 class="card-title">Mango</h4>
-                  <p class="card-text">Some example text. Some example text. </p>
-                  <span class="badge badge-pill badge-success p-2">19 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
+                  <p class="card-text">Ice-cream flavoured with the King of Fruits! Mangoes impart a luscious creamy texture and rich flavour to this delicious frozen dessert. </p>
+                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
+                  <a href="#" type="submit" class="card-link btn btn-outline-dark">Add to cart</a>
                 </div>
             </div>            
             <div class="card" style="width: 500px;">
                 <div class="card-body">
                     <img class="card-img-top float-right rounded" src="img/pista.jpeg" style="height: 150px; width: 210px;" alt="">
                   <h4 class="card-title">Pista</h4>
-                  <p class="card-text">Some example text. Some example text. </p>
-                  <span class="badge badge-pill badge-success p-2">15 &#8377</span>
+                  <p class="card-text">Its sweet and creamy like ice cream should be, with subtle hints of savory nuttiness from the pistachios. </p>
+                  <span class="badge badge-pill badge-success p-2">90 &#8377</span>
                   <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
                 </div>
             </div>
@@ -162,9 +162,9 @@ if ($_SESSION['ok']> 0 )
                 <div class="card-body">
                     <img class="card-img-top float-right rounded" src="img/kesar.jpg" style="height: 150px; width: 210px;" alt="">
                   <h4 class="card-title">Kesar</h4>
-                  <p class="card-text">Some example text. Some example text. </p>
-                  <span class="badge badge-pill badge-success p-2">15 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
+                  <p class="card-text">The delicious of Kesar and real ice cream is simply impossible to resist. </p>
+                  <span class="badge badge-pill badge-success p-2">90 &#8377</span>
+                  <a href="#cart" class="card-link btn btn-outline-dark"> Add to cart</a>
                 </div>
             </div>
         </div>

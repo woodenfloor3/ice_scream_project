@@ -1,4 +1,8 @@
+<?php
+session_start();
+?>
 <!doctype html>
+
 <html lang="en">
 
 <head>
@@ -46,7 +50,7 @@
         <div class="container row starter col-xs-12">
             <div class="header col-lg-8 col-xm-12">
                 <h3 class="header-title">HAND-MADE ICE CREAM !</h3>
-                <p class="descreption">Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br> Dolorum architecto commodi ipsum quas deleniti ea corrupti a dignissimos?<br> Soluta, repudiandae.</p>
+                <p class="descreption">only ice-cream</p>
                 <div class="buttons">
                     <a class="btn btn-primary text-white" href="#contact">Contact Us <span class="badge badge-light"></span></a>
                 </div>
@@ -119,9 +123,11 @@
                                 window.location.href='javascript:history.go(-1)';
                                 </SCRIPT>");
                     }
+                    $_SESSION['ok']=$count;
+                $_SESSION['usid']=$usid;
+                    
                 }
-                
-                    ?>
+                ?>
 
                 </div>
             </row>
@@ -271,7 +277,7 @@ die("Could not connect " . mysqli_error($conn));
             <!-- Modal body -->
             <div class="modal-body">
                 <div id="items-container">
-                <form class="text-center" method="POST" action="php/AdminLoginValidation.php">
+                <form class="text-center" method="POST">
                         <img src="img/avatar.svg"style="width: 20%;height: 20%;" alt="" >
                         <h2 style="font-weight: 625;padding-bottom: 15px;">Welcome Admin</h2>
                         <div class="form-group">
@@ -281,13 +287,45 @@ die("Could not connect " . mysqli_error($conn));
                           <div class="form-group">
                             <label for="text">Password</label>
                             <input type="password" class="form-control input" name="pass" >
-                            <a href="#" id="forgot">Forgot password?</a>
+                            <a href="#" id="forgot">dont Forgot password we can't change it</a>
                           </div>
-                          <button type="submit" class="btn" name="submitlogin" id="btn-login">Login </button>
+                          <button type="submit" class="btn" name="Alogin" id="btn-login">Login </button>
                           
                                     
 
                     </form>
+                    <?php
+                    if(isset($_POST['Alogin']))
+            {
+
+                    $dbhost='localhost';
+                    $dbname='ice-cream';
+                    $dbusername='root';
+                    $dbpass='';
+                    $conn =mysqli_connect($dbhost,$dbusername,$dbpass,$dbname) or
+                    die("Could not connect " . mysqli_error($conn));
+
+                    $usid=$_POST['usr'];
+                    $uspass=$_POST['pass'];
+                    $sql="select * from admin where username ='$usid' and password ='$uspass'";
+                    $result = mysqli_query($conn, $sql);
+                    $count = mysqli_num_rows($result);
+                    if($count>0)
+                    {
+                        echo ("<SCRIPT LANGUAGE='JavaScript'>
+                    window.location.href='index1.php';
+                    </SCRIPT>");
+                    }
+                    else
+                    {
+                        echo ("<SCRIPT LANGUAGE='JavaScript'>
+                                window.alert('Invalid Password');
+                                window.location.href='javascript:history.go(-1)';
+                                </SCRIPT>");
+                    }
+                }
+                 
+                    ?>
     
             <!-- Modal footer -->
             <div class="modal-footer">
