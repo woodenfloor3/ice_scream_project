@@ -41,7 +41,7 @@ session_start();
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                     <li class="nav-item myitem">
-                        <a class="nav-link" href="#AdminLogin" data-toggle="modal" data-target="#AdminLogin">Admin<span class="badge badge-success">0</span></a>
+                        <a class="nav-link" href="#AdminLogin" data-toggle="modal" data-target="#AdminLogin">Admin</a>
                     </li>
                   </ul>
             </div>
@@ -62,14 +62,11 @@ session_start();
     <div id="login" style="position: relative;" class="container surface p-3 mb-5 rounded">
         <img src="img/wave.png" id="wave" class="pc"alt="wave">
 
-        <div class="icons" data-toggle="modal" data-target="#sign-up">
-            <img src="img/login.png" alt="add-to-cart">
-            <h3 class="icons-title" style="left: 0px;">Sign up</h3>   
-        </div>
+        
 
         <div class="container-fluid">
             <div class=" col-md-6 d-flex p-2 justify-content-between">
-                <a class="logo" href="#sign-up" data-toggle="modal" data-target="sign-up">Sign up</a>
+                <a class="logo" href="#sign-up" data-toggle="modal" data-target="sign-up">Log in</a>
             </div>
 
             <row class="row">
@@ -86,8 +83,7 @@ session_start();
                           </div>
                           <div class="form-group">
                             <label for="text">Password</label>
-                            <input type="password" class="form-control input" name="pass_word" >
-                            <a href="#" id="forgot">Forgot password?</a>
+                            <input type="password" class="form-control input" name="pass_word">
                           </div>
                           <button type="submit" class="btn" name="submitlogin" id="btn-login">Login </button>
                           
@@ -168,8 +164,8 @@ session_start();
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                             <div class="col">
-                                <label for="username">UserName:</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter lastname" name="username" required>
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required>
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
@@ -282,12 +278,11 @@ die("Could not connect " . mysqli_error($conn));
                         <h2 style="font-weight: 625;padding-bottom: 15px;">Welcome Admin</h2>
                         <div class="form-group">
                             <label for="text">Username</label>
-                            <input type="text" class="form-control input" name="usr" >
+                            <input type="text" class="form-control input" name="usr" required >
                           </div>
                           <div class="form-group">
                             <label for="text">Password</label>
-                            <input type="password" class="form-control input" name="pass" >
-                            <a href="#" id="forgot">dont Forgot password we can't change it</a>
+                            <input type="password" class="form-control input" name="pass" required>
                           </div>
                           <button type="submit" class="btn" name="Alogin" id="btn-login">Login </button>
                           

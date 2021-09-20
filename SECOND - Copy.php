@@ -38,9 +38,6 @@ session_start();
                         <a class="nav-link font-weight-bold" href="#shop">Shop </a>
                     </li>
                     <li class="nav-item myitem">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#cart">My cart <span class="badge badge-success">0</span></a>
-                    </li>
-                    <li class="nav-item myitem">
                         <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                     <li class="nav-item myitem">
@@ -52,8 +49,8 @@ session_start();
 
         <div class="container row starter col-xs-12">
             <div class="header col-lg-8 col-xm-12">
-                <h3 class="header-title">HAND-MADE ICE CREAM !</h3>
-                <p class="descreption">Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br> Dolorum architecto commodi ipsum quas deleniti ea corrupti a dignissimos?<br> Soluta, repudiandae.</p>
+                <h3 class="header-title">Best Quality ICE-CREAM !</h3>
+                <p class="descreption">we provide best ice-cream with natural ingredients.</p>
                 <div class="buttons">
                     <a class="btn btn-danger shop shadow  rounded " href="#shop">Shop <span class="badge badge-light"></span></a>
                     <a class="btn btn-primary text-white" href="#contact">Contact Us <span class="badge badge-light"></span></a>
@@ -103,134 +100,191 @@ session_start();
     </div>
 
     <div id="shop" style="position: relative;" class="container surface p-3 mb-5 rounded">
-        <div class="icons" data-toggle="modal" data-target="#cart">
-            <img src="img/cart.png" alt="cart">
-            <h3 class="icons-title">Cart</h3>   
-
-        </div>
-
         <div class=" col-lg-6 d-flex p-2 justify-content-between">
-            <a class="logo " href="#shop">SHOP</a>
+            <a class="logo" href="#shop">SHOP</a>
         </div>
         <div id="shop-container" class="d-flex justify-content-around flex-wrap">
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/chocolate.jpeg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title"> Chocolate</h4>
-                  <p class="card-text">chocolate ice cream is generally made by blending cocoa powder along with the eggs, cream, vanilla and sugar used to make vanilla ice cream </p>
-                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
-                </div>
-            </div>
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/BlackCurrant.jpeg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Black Currant</h4>
-                  <p class="card-text">This blackcurrant ice cream is a flavourful, creamy custard-based ice cream with the rich and tangy taste of tart blackcurrants.</p>
-                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
-                </div>
-            </div>
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/vanilla.jpg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Vanilla</h4>
-                  <p class="card-text">Vanilla ice cream is made by blending in vanilla essence in along with the eggs, cream, milk and sugar. </p>
-                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
-                </div>
-            </div>
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/Mango.jpeg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Mango</h4>
-                  <p class="card-text">Ice-cream flavoured with the King of Fruits! Mangoes impart a luscious creamy texture and rich flavour to this delicious frozen dessert. </p>
-                  <span class="badge badge-pill badge-success p-2">85 &#8377</span>
-                  <a href="#" type="submit" class="card-link btn btn-outline-dark">Add to cart</a>
-                </div>
-            </div>            
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/pista.jpeg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Pista</h4>
-                  <p class="card-text">Its sweet and creamy like ice cream should be, with subtle hints of savory nuttiness from the pistachios. </p>
-                  <span class="badge badge-pill badge-success p-2">90 &#8377</span>
-                  <a href="#" class="card-link btn btn-outline-dark">Add to cart</a>
-                </div>
-            </div>
-            <div class="card" style="width: 500px;">
-                <div class="card-body">
-                    <img class="card-img-top float-right rounded" src="img/kesar.jpg" style="height: 150px; width: 210px;" alt="">
-                  <h4 class="card-title">Kesar</h4>
-                  <p class="card-text">The delicious of Kesar and real ice cream is simply impossible to resist. </p>
-                  <span class="badge badge-pill badge-success p-2">90 &#8377</span>
-                  <a href="#cart" class="card-link btn btn-outline-dark"> Add to cart</a>
-                </div>
-            </div>
-        </div>
-       
-          
-
+        
+        <?php 
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "ice-cream";
+        
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+        
+         $sql = "SELECT id,flavour,description,price FROM products";
+         $result = $conn->query($sql);
+         
+         if ($result->num_rows > 0) {
+           // output data of each row
+           while($row = $result->fetch_assoc()) {
+        ?>
+        <div class="card" style="width: 500px;">
+             <div class="card-body" id="<?php echo $row["id"]?>">
+                <img class="card-img-top float-right rounded" src=<?php echo "img/".$row["flavour"].".jpg"?> style="height: 150px; width: 210px;">
+               <h4 class="card-title"><?php echo $row["flavour"]?></h4>
+               <p class="card-text"><?php echo $row["description"]?></p>
+               <span class="badge badge-pill badge-success p-2"><?php echo $row["price"]?> &#8377</span>
+               <form method="POST">
+                <input type="hidden" name="quan" value="1" placeholder="Quantity" required>
+                <input class="form-control" type="hidden" name="hiddenId" value="<?php echo $row["id"]?>">
+                <input class="form-control" type="hidden" name="hiddenname" value="<?php echo $row["flavour"]; ?>">
+                <input class="form-control" type="hidden" name="hiddenprice" value="<?php echo $row["price"]; ?>">
+                <button type="submit" name="addcart" class="card-link btn btn-outline-dark"> Add to cart</button>
+               </form>
+             </div>
+             </div>
+        <?php
+         }
+         $conn->close();
+        }
+         ?>
     </div>
+    <?php
+    if(isset($_POST['addcart'])){
+    
+        $_SESSION['IceCart'][] = array(
+            'id' => $_POST['hiddenId'],
+            'name' => $_POST['hiddenname'],
+            'price' => $_POST['hiddenprice'],
+            'quan' => $_POST['quan'],
+        );
+    }
+    ?>
+    <?php
+     if(isset($_GET['empty'])){
+        unset($_SESSION['IceCart']);
+    }
+
+    if(isset($_GET['remove'])){
+        $id = $_GET['remove'];
+        foreach($_SESSION['IceCart'] as $k => $part){
+            if($id == $part['id']){
+                unset($_SESSION['IceCart'][$k]);
+            }
+        }
+
+    }
+    $total=0;
+?>
+
+<?php 
+    if(isset($_GET['btn-order'])){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "ice-cream";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+        }
+        foreach($_SESSION['IceCart'] as $k => $part){
+            $id = $part['id'];
+            $name = $part['name'];
+            $price = $part['price'];
+            $username=$_SESSION['usid'];
+            $total += $part['price'];
+            $sql= "INSERT INTO iceorder
+            VALUES ('$id','$name','$price','$username')";
+            $result = $conn->query($sql);
+        }
+        $sql= "SELECT * FROM iceorder";
+        $result = $conn->query($sql);
+        $total = 0;
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                $total += $row['price'];
+            }
+        }
+    }
+?>
+
 
 
     <!-- Cart -->
-    <div class="modal fade" id="cart">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-    
-            <!-- Modal Header -->
-            <div class="modal-header">
+    <div id="cart" style="position: relative;" class="container surface p-3 mb-5 rounded mt-5">
+            <h3 class="modal-title">CART</h3>
+            <form method="POST" class="container">
+            <table style="border-bottom: 1px #e3e3e3 solid; margin-bottom:20px;">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Remove</th>
+            </tr>
+
+            <?php if(isset($_SESSION['IceCart'])) :?>
+                <?php foreach($_SESSION['IceCart'] as $k => $item):?>
             
-            <h3 class="modal-title">MY CART</h3>
-            <button type="button" class="close" data-dismiss="modal">&times; </button>
-            </div>
+                    <tr>
+                        <td><?php echo $item['id']; ?></td>
+                        <td><?php echo $item['name']; ?></td>
+                        <td><?php echo $item['quan']; ?></td>
+                        <td><?php echo $item['price'] * $item['quan']; 
+                                        $pro = $item['price'] * $item['quan'];
+                                        $total += $total + $pro;
+                                        ?></td>
+                                    
+                        <td><a href="SECOND - Copy.php?remove=<?php echo $item['id']; ?>">Remove</a></td>
+                    </tr>
+                    <?php
+if(isset($_POST['submit']))
+{
+ $dbhost= "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "ice-cream";
+// Create connection
+$conn =  mysqli_connect($dbhost, $username, $password, $dbname) or 
+die("Could not connect " . mysqli_error($conn));
+    $id=$_POST['id'];
+	$product=$_POST['name'];
+	$price=$_POST['price'];
+	$username=$_SESSION['usid'];
+	
+	
+	$sql= "INSERT INTO iceorder (orderid,product,price,'{$_SESSION['usid']});
+     VALUES ('$id','$product','$price','$username',)";
+            
+	$result = mysqli_query($conn, $sql);
+            if($result)
+                {
+                    echo "Success";
+                }
+                else{
+                    echo "Failed" ;
+                }
+
+
+            }
+            ?>
+                <?php endforeach ?>
+
+            <?php endif ?>
+        </table>
     
             <!-- Modal body -->
             <div class="modal-body">
-                <div id="items-container">
-                <form class="text-center" method="POST" action="order.php" >
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="items-title">ITEM</th>
-                                <th class="items-price">PRICE</th>
-                                <th class="items-quantity">QUANTITY</th>
-                                <th class="items-total">TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody class="items">
-                            <tr>
-                                <td class="items-title"></td>
-                                <td class="items-price"></td>
-                                <td class="items-quantity"></td>
-                                <td class="items-total"></td>
-                            </tr>
-                            <tr>
-                                <td class="items-title"></td>
-                                <td class="items-price"></td>
-                                <td class="items-quantity"></td>
-                                <td class="items-total"></td>
-                            </tr>
-                        </tbody> 
-                        <tfoot>
-                            <tr>
-                                <th colspan="2"></th>
-                                <th class="items-quantity">Total</th>
-                                <th class="items-total">0RS</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            
-            <button type class="btn btn-warning">order </button>
-
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 </form>
+
+<form>
+<input type="submit" name="btn-order" class="btn btn-warning" value="update cart"/>
+</form>
+
+<form action="order.php">
+<input type="submit" name="btn-proceedorder" class="btn btn-warning mt-2" value="Order"/>
+    </form>
+
    
         </div>
 
@@ -241,11 +295,7 @@ session_start();
         </div>
         </div>
     </div>
-    <div id="contact" style="position: relative;" class="container surface p-3 mb-5 rounded">
-        <a class="logo" href="#contact">Contact us</a>
-            <p>For inquiries regarding product availability, ordering information, status of shipment, billing,
-            spoiled merchandise, or returns, please contact Penguin Random House Customer Service at 1-800-733-3000.</p>
-    </div>
+   
 
     <!-- Info -->
     <div class="modal fade" id="info">
